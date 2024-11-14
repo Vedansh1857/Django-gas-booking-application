@@ -1,14 +1,13 @@
 {
-  "builds": [
-    { "src": "manage.py", "use": "@vercel/python" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "manage.py" }
-  ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "myproject.settings"
-  },
-  "hooks": {
-    "build": "python manage.py migrate"
-  }
+    "builds": [{
+      "src": "gasbookingproject/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.10.3" }
+    }],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "gasbookingproject/wsgi.py"
+      }
+    ]
 }
